@@ -1,1 +1,45 @@
+#blog-title {
+  background-color: #407F7F;
+  text-align: center;
+  font-family: 'Cinzel', serif;
+}
 
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  margin: 50px;
+  color: #801515;
+}
+
+article {
+  border: 100px;
+}
+
+.title {
+  font-family: 'Cinzel', serif;
+}
+
+
+.author {
+  color: #0D4D4D ;
+}
+
+img {
+  width: 100px;
+  height: 50px;
+  float: left;
+  margin: 10px;
+
+}
+/*
+.body {
+  clear: left;
+  border-bottom: 50px;
+}*/
