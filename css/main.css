@@ -4,6 +4,10 @@
   font-family: 'Cinzel', serif;
 }
 
+@viewport {
+  width: device-width;
+  zoom: 1;
+}
 .tab-panel {
   display: none;
 }
@@ -18,8 +22,28 @@ a {
   color: #801515;
 }
 
+#home {
+  background-image: url(0003-home3.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#gitHub {
+  background-image: url(0434-github.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#about {
+  background-image: url(0069-address-book.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
 article {
-  border: 100px;
+  border-bottom: 1px solid;
+  padding: 30px;
+  margin-bottom: 30px;
 }
 
 .title {
@@ -37,9 +61,5 @@ img {
   float: left;
   margin: 10px;
 
+
 }
-/*
-.body {
-  clear: left;
-  border-bottom: 50px;
-}*/
