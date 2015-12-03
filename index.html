@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blog</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
@@ -18,9 +19,9 @@
       <h1 id="blog-title">Darcy's Blog</h1>
       <nav>
         <ul class="tab-list">
-          <li class="active"><a class="tab-control" href="#articles">Articles</a></li>
-          <li><a class="tab-control" href="#about">About</a></li>
-          <li><a href="https://github.com/dlambrecht" target="_blank">GitHub</a></li>
+          <li id="home" class="active"><a class="tab-control" href="#articles">Home</a></li>
+          <li id="about"><a class="tab-control" href="#about">About</a></li>
+          <li id="gitHub"><a href="https://github.com/dlambrecht" target="_blank">GitHub</a></li>
         </ul>
         <div class="tab-panel active" id="articles"></div>
         <div class="tab-panel" id="about">My story</div>
@@ -39,7 +40,7 @@
         <div class="category"></div>
         <a class="author" target="_blank"></a>
         <!-- <p class="authorUrl"></p> -->
-        <div class="time"></div>
+        <!-- <div class="time"></div> -->
         <div class="body"></div>
         <a href="#" class="read-on">Read On --></a>
       </article>

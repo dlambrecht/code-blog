@@ -31,7 +31,6 @@ blog.truncateArticles = function() {
 };
 
 
-// date methods
 // author filter
 blog.authorPopulate = function() {
   for(var i = 0; i < blog.blogArticles.length; i++) {
@@ -39,10 +38,6 @@ blog.authorPopulate = function() {
     var $popAuthor = $('#author-filter').clone();
     $popAuthor.removeAttr('id').text(currentAuthor);
     $('#author').append($popAuthor);
-
-    //variable to store all the authors in the array
-    // variable to populate by html id
-    //clone based on the string
   }
 };
 // category filter
@@ -53,14 +48,48 @@ blog.categoryPopulate = function() {
     $popCategory.removeAttr('id').text(currentCategory);
     $('#category').append($popCategory);
   }
-  // variable to store all the categories in the array
-  // variable to populate by html id
-  // clone based on the string
 };
 
-blog.handleOnChange = function() {
+// method to handle filter
+blog.handleFilter = function() {
+  $('select[id="category"]').change(function() {
+    $('#author').find('option:first').attr('selected', 'selected');
+    $('main').find('article').hide();
+    $('.category:contains(' + $(this).val() + ')').parent().show();
+  });
 
+  $('select[id="author"]').change(function() {
+    $('#category').find('option:first').attr('selected', 'selected');
+    $('main').find('article').hide();
+    $('.article:contains(' + $(this).val() + ')').show();
+    console.log('auhor');
+  });
 };
+
+// method to create tab menu
+blog.createTabMenu = function() {
+  $('.tab-list').each(function() {
+    var $this = $(this);
+    var $tab = $this.find('li.active');
+    var $link = $tab.find('a');
+    var $panel = $($link.attr('href'));
+
+    $this.on('click', '.tab-control', function(e) {
+      e.preventDefault();
+      var $link = $(this);
+      var id = this.hash;
+
+      if (id && !$link.is('.active')) {
+        $panel.removeClass('active');
+        $tab.removeClass('active');
+
+        $panel = $(id).addClass('active');
+        $tab = $link.parent().addClass('active');
+      }
+    });
+  });
+};
+
 
 $(document).ready(function() {
   blog.sortRawData();
@@ -68,6 +97,6 @@ $(document).ready(function() {
   blog.truncateArticles();
   blog.authorPopulate();
   blog.categoryPopulate();
-  $('author').on('change', blog.handleOnChange);
-
+  blog.createTabMenu();
+  blog.handleFilter();
 });
