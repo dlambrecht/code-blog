@@ -12,10 +12,9 @@ var Article = function(props) {
 
 // add new data to the DOM
 Article.prototype.toHTML = function() {
-  var $article = $('.article').first().clone();
-  $article.find('.title').text(this.title);
-  $article.find('.author').attr('href', this.authorUrl).html('By ' + this.author + ' published on ' + this.publishedOn); $article.find('.time').text(this.publishedOn);
-  $article.find('.category').text('Category: ' + this.category);
-  $article.find('.body').html(this.body);
-  $('main').prepend($article);
+  var source = $('#template').html();
+  var template = Handlebars.compile(source);
+  var result = template(this);
+  $('#blog').prepend(result);
+  this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
 };
