@@ -5,47 +5,53 @@
     <title>Blog</title>
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/layout.css">
     <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
     <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="js/handlebars-v4.0.5.js"></script>
     <script src="js/article.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/blogArticles.js"></script>
     <script src="js/util.js"></script>
+
+    <script id="template" type="text/x-handlebars-template">
+        <article class="article">
+          <h1>{{title}}</h1>
+          <div class="category">Category: {{category}}</div>
+          <div>By:<a href="{{authorUrl}}" target="_blank">{{author}}</a>published {{daysOld}} days ago</div>
+          <div class="body">{{{body}}}</div>
+          <a href="#" class="read-on">Read On --></a>
+        </article>
+    </script>
   </head>
 
   <body>
     <header>
       <h1 id="blog-title">Darcy's Blog</h1>
-      <nav>
-        <ul class="tab-list">
-          <li id="home" class="active"><a class="tab-control" href="#articles">Home</a></li>
-          <li id="about"><a class="tab-control" href="#about">About</a></li>
-          <li id="gitHub"><a href="https://github.com/dlambrecht" target="_blank">GitHub</a></li>
-        </ul>
-        <div class="tab-panel active" id="articles"></div>
-        <div class="tab-panel" id="about">My story</div>
-
-        <select id="author">
-          <option id="author-filter">filter by author</option>
-        </select>
-        <select id="category">
-          <option id="category-filter">filter by category</option>
-        </select>
-      </nav>
     </header>
-    <main>
-      <article class="article">
-        <h1 class="title"></h1>
-        <div class="category"></div>
-        <a class="author" target="_blank"></a>
-        <!-- <p class="authorUrl"></p> -->
-        <!-- <div class="time"></div> -->
-        <div class="body"></div>
-        <a href="#" class="read-on">Read On --></a>
-      </article>
-    </main>
+      <nav>
+          <a id="home" href="#tab1">Home</a> |
+          <a id="about" href="#tab2">About</a> |
+          <a id="gitHub" href="https://github.com/dlambrecht" target="_blank">GitHub</a>
+      </nav>
 
+      <section id="articles" class="tab-content active">
+          <div>
+            <select id="author">
+              <option id="author-filter">filter by author</option>
+            </select>
+            <select id="category">
+              <option id="category-filter">filter by category</option>
+            </select>
+
+            <div id="blog"></div>
+          </div>
+        </section>
+
+        <section id="aboutContent" class="tab-content">
+          <div>My story</div>
+        </section>
     <footer>
     </footer>
   </body>

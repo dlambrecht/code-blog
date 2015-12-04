@@ -30,6 +30,21 @@ blog.truncateArticles = function() {
   });
 };
 
+blog.homeTab = function() {
+  $('#home').on('click', function(event) {
+    event.preventDefault();
+    $('#articles').addClass('active');
+    $('#aboutContent').removeClass('active');
+  });
+};
+
+blog.aboutTab = function() {
+  $('#about').on('click', function(event) {
+    event.preventDefault();
+    $('#aboutContent').addClass('active');
+    $('#articles').removeClass('active');
+  });
+};
 
 // author filter
 blog.authorPopulate = function() {
@@ -54,39 +69,14 @@ blog.categoryPopulate = function() {
 blog.handleFilter = function() {
   $('select[id="category"]').change(function() {
     $('#author').find('option:first').attr('selected', 'selected');
-    $('main').find('article').hide();
+    $('#blog').find('article').hide();
     $('.category:contains(' + $(this).val() + ')').parent().show();
   });
 
   $('select[id="author"]').change(function() {
     $('#category').find('option:first').attr('selected', 'selected');
-    $('main').find('article').hide();
+    $('#blog').find('article').hide();
     $('.article:contains(' + $(this).val() + ')').show();
-    console.log('auhor');
-  });
-};
-
-// method to create tab menu
-blog.createTabMenu = function() {
-  $('.tab-list').each(function() {
-    var $this = $(this);
-    var $tab = $this.find('li.active');
-    var $link = $tab.find('a');
-    var $panel = $($link.attr('href'));
-
-    $this.on('click', '.tab-control', function(e) {
-      e.preventDefault();
-      var $link = $(this);
-      var id = this.hash;
-
-      if (id && !$link.is('.active')) {
-        $panel.removeClass('active');
-        $tab.removeClass('active');
-
-        $panel = $(id).addClass('active');
-        $tab = $link.parent().addClass('active');
-      }
-    });
   });
 };
 
@@ -97,6 +87,8 @@ $(document).ready(function() {
   blog.truncateArticles();
   blog.authorPopulate();
   blog.categoryPopulate();
-  blog.createTabMenu();
   blog.handleFilter();
+  blog.homeTab();
+  blog.aboutTab();
+
 });

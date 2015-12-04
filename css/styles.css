@@ -4,62 +4,59 @@
   font-family: 'Cinzel', serif;
 }
 
-@viewport {
-  width: device-width;
-  zoom: 1;
-}
-.tab-panel {
-  display: none;
-}
-
-.tab-panel.active {
-  display: block;
-}
-
 a {
   text-decoration: none;
   margin: 50px;
   color: #801515;
 }
 
+nav {
+  margin-bottom: 18px;
+  margin-left: 20px;
+}
+
+
 #home {
   background-image: url(0003-home3.svg);
   background-repeat: no-repeat;
   background-size: contain;
+  padding-left: 25px;
 }
 
 #gitHub {
   background-image: url(0434-github.svg);
   background-repeat: no-repeat;
   background-size: contain;
+  padding-left: 25px;
 }
 
 #about {
   background-image: url(0069-address-book.svg);
   background-repeat: no-repeat;
   background-size: contain;
+  padding-left: 25px;
 }
 
 article {
   border-bottom: 1px solid;
-  padding: 30px;
-  margin-bottom: 30px;
 }
 
 .title {
   font-family: 'Cinzel', serif;
 }
 
-
 .author {
   color: #0D4D4D ;
 }
 
-img {
-  width: 100px;
-  height: 50px;
-  float: left;
-  margin: 10px;
+#articles {
+  margin-left: 20px;
+}
 
+.tab-content {
+  display: none;
+}
 
+.active {
+  display: inline;
 }

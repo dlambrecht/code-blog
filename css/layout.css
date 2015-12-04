@@ -1,0 +1,33 @@
+
+img {
+  max-width: 100px;
+  float: left;
+  margin: 10px;
+}
+
+article:last-child {
+  display: none;
+}
+
+.tab-list {
+  display: inline;
+}
+
+@media screen and (max-width: 600px) {
+  article {
+    padding: 50px;
+    margin-bottom: 50px;
+  }
+}
+.tab-content.hide {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@viewport {
+  width: device-width;
+  zoom: 1;
+}

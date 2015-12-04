@@ -12,10 +12,19 @@ var Article = function(props) {
 
 // add new data to the DOM
 Article.prototype.toHTML = function() {
-  var $article = $('.article').first().clone();
-  $article.find('.title').text(this.title);
-  $article.find('.author').attr('href', this.authorUrl).html('By ' + this.author + ' published on ' + this.publishedOn); $article.find('.time').text(this.publishedOn);
-  $article.find('.category').text('Category: ' + this.category);
-  $article.find('.body').html(this.body);
-  $('main').prepend($article);
+  this.calculateDaysOld();
+  var source = $('#template').html();
+  var template = Handlebars.compile(source);
+  var result = template(this);
+  $('#blog').prepend(result);
+};
+
+Article.prototype.calculateDaysOld = function() {
+  var currentDate = new Date();
+  // console.log(currentDate);
+  var publishedDate = new Date(this.publishedOn);
+  // console.log(publishedDate);
+  var diffDays = Math.floor((currentDate.getTime() - publishedDate.getTime())/1000/60/60/24);
+  this.daysOld = diffDays;
+  //console.log(this.daysOld);
 };
