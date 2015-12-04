@@ -8,8 +8,6 @@ var Article = function(props) {
   this.publishedOn = props.publishedOn;
 };
 
-// date method
-
 // add new data to the DOM
 Article.prototype.toHTML = function() {
   this.calculateDaysOld();
@@ -19,12 +17,10 @@ Article.prototype.toHTML = function() {
   $('#blog').prepend(result);
 };
 
+// date method
 Article.prototype.calculateDaysOld = function() {
   var currentDate = new Date();
-  // console.log(currentDate);
   var publishedDate = new Date(this.publishedOn);
-  // console.log(publishedDate);
   var diffDays = Math.floor((currentDate.getTime() - publishedDate.getTime())/1000/60/60/24);
   this.daysOld = diffDays;
-  //console.log(this.daysOld);
 };
