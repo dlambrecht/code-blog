@@ -31,13 +31,20 @@ blog.truncateArticles = function() {
 };
 
 blog.homeTab = function() {
-  $('.tab-control').on('click', function(event) {
+  $('#home').on('click', function(event) {
     event.preventDefault();
-    $('#tab2').hide();
-    $('#tab1').show();
+    $('#articles').addClass('active');
+    $('#aboutContent').removeClass('active');
   });
 };
 
+blog.aboutTab = function() {
+  $('#about').on('click', function(event) {
+    event.preventDefault();
+    $('#aboutContent').addClass('active');
+    $('#articles').removeClass('active');
+  });
+};
 
 // author filter
 blog.authorPopulate = function() {
@@ -82,6 +89,6 @@ $(document).ready(function() {
   blog.categoryPopulate();
   blog.handleFilter();
   blog.homeTab();
-
+  blog.aboutTab();
 
 });

@@ -12,9 +12,19 @@ var Article = function(props) {
 
 // add new data to the DOM
 Article.prototype.toHTML = function() {
+  this.calculateDaysOld();
   var source = $('#template').html();
   var template = Handlebars.compile(source);
   var result = template(this);
   $('#blog').prepend(result);
-  this.daysAgo = parseInt((new Date() - new Date(this.publishedOn))/60/60/24/1000);
+};
+
+Article.prototype.calculateDaysOld = function() {
+  var currentDate = new Date();
+  // console.log(currentDate);
+  var publishedDate = new Date(this.publishedOn);
+  // console.log(publishedDate);
+  var diffDays = Math.floor((currentDate.getTime() - publishedDate.getTime())/1000/60/60/24);
+  this.daysOld = diffDays;
+  //console.log(this.daysOld);
 };

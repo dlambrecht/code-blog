@@ -18,8 +18,8 @@
     <script id="template" type="text/x-handlebars-template">
         <article class="article">
           <h1>{{title}}</h1>
-          <div class="category">{{category}}</div>
-          <a>{{author}}</a>
+          <div class="category">Category: {{category}}</div>
+          <div>By:<a href="{{authorUrl}}" target="_blank">{{author}}</a>published {{daysOld}} days ago</div>
           <div class="body">{{{body}}}</div>
           <a href="#" class="read-on">Read On --></a>
         </article>
@@ -31,9 +31,9 @@
       <h1 id="blog-title">Darcy's Blog</h1>
     </header>
       <nav>
-          <li id="home" class="active"><a href="#tab1">Home</a></li>
-          <li id="about"><a class="tab-control" href="#tab2">About</a></li>
-          <li id="gitHub"><a class="tab-control" href="https://github.com/dlambrecht" target="_blank">GitHub</a></li>
+          <a id="home" href="#tab1">Home</a> |
+          <a id="about" href="#tab2">About</a> |
+          <a id="gitHub" href="https://github.com/dlambrecht" target="_blank">GitHub</a>
       </nav>
 
       <section id="articles" class="tab-content active">
@@ -49,7 +49,7 @@
           </div>
         </section>
 
-        <section id="about" class="tab-content hide">
+        <section id="aboutContent" class="tab-content">
           <div>My story</div>
         </section>
     <footer>
