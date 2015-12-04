@@ -84,7 +84,7 @@ nav {
   }
 
 
-/*#home {
+#home {
   background-image: url(0003-home3.svg);
   background-repeat: no-repeat;
   background-size: contain;
@@ -100,7 +100,7 @@ nav {
   background-image: url(0069-address-book.svg);
   background-repeat: no-repeat;
   background-size: contain;
-}*/
+}
 
 article {
   border-bottom: 1px solid;
