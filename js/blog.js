@@ -1,6 +1,7 @@
 var blog = {};
 blog.blogArticles = [];
 
+// sort articles by latest first
 blog.sortRawData = function() {
   blog.rawData.sort(function(a, b) {
     if (a.publishedOn > b.publishedOn) {
@@ -13,23 +14,26 @@ blog.sortRawData = function() {
   });
 };
 
+// create articles
 blog.createArticles = function() {
   for (var i = 0; i < blog.rawData.length; i++) {
     var art = new Article(blog.rawData[i]);
     blog.blogArticles.push(art);
-    art.toHTML();
+    $('#blog').prepend(art.toHTML());
   };
 };
 
+// read on functionality
 blog.truncateArticles = function() {
   $('article p:not(:first-child)').hide();
   $('.read-on').on('click', function(event) {
     event.preventDefault();
-    $(this).parent().find('p').fadeIn(); //.show()
+    $(this).parent().find('p').fadeIn();
     $(this).hide();
   });
 };
 
+// home tab
 blog.homeTab = function() {
   $('#home').on('click', function(event) {
     event.preventDefault();
@@ -38,6 +42,7 @@ blog.homeTab = function() {
   });
 };
 
+// about tab
 blog.aboutTab = function() {
   $('#about').on('click', function(event) {
     event.preventDefault();
@@ -55,17 +60,19 @@ blog.authorPopulate = function() {
     $('#author').append($popAuthor);
   }
 };
+
 // category filter
 blog.categoryPopulate = function() {
   for (var i = 0; i < blog.blogArticles.length; i++) {
     var currentCategory = blog.blogArticles[i].category;
+    // $.each($.unique(blog.blogArticles.category), function(i, value) {
     var $popCategory = $('#category-filter').clone();
     $popCategory.removeAttr('id').text(currentCategory);
     $('#category').append($popCategory);
+  // });
   }
 };
-
-// method to handle filter
+//method to handle filter
 blog.handleFilter = function() {
   $('select[id="category"]').change(function() {
     $('#author').find('option:first').attr('selected', 'selected');
@@ -80,7 +87,7 @@ blog.handleFilter = function() {
   });
 };
 
-
+// function calls when document is ready
 $(document).ready(function() {
   blog.sortRawData();
   blog.createArticles();
@@ -90,5 +97,4 @@ $(document).ready(function() {
   blog.handleFilter();
   blog.homeTab();
   blog.aboutTab();
-
 });

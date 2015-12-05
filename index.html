@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/layout.css">
     <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/handlebars-v4.0.5.js"></script>
     <script src="js/article.js"></script>
@@ -20,8 +21,8 @@
           <h1>{{title}}</h1>
           <div class="category">Category: {{category}}</div>
           <div>By:<a href="{{authorUrl}}" target="_blank">{{author}}</a>published {{daysOld}} days ago</div>
-          <div class="body">{{{body}}}</div>
-          <a href="#" class="read-on">Read On --></a>
+          <div class="body">{{{markedBody}}}</div>
+          <a href="#" class="read-on">Read On</a>
         </article>
     </script>
   </head>

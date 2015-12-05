@@ -1,4 +1,6 @@
 blog.rawData = [
+{title:'This is a Test',category:'testing',author:"Darcy Lambrecht",authorUrl:'darcylambrecht.com',publishedOn:'2015-12-05T05:03:27.844Z',body:'This is a test of the new article writing system. If this works I am closing my text editor, putting on Netflix and possibly opening that bottle of wine...'},
+
   {
     title:       'Bacon Ipsum',
     category:    'food',
