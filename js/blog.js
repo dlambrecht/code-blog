@@ -19,7 +19,7 @@ blog.createArticles = function() {
   for (var i = 0; i < blog.rawData.length; i++) {
     var art = new Article(blog.rawData[i]);
     blog.blogArticles.push(art);
-    art.toHTML();
+    $('#blog').prepend(art.toHTML());
   };
 };
 
@@ -72,8 +72,7 @@ blog.categoryPopulate = function() {
   // });
   }
 };
-
-// method to handle filter
+//method to handle filter
 blog.handleFilter = function() {
   $('select[id="category"]').change(function() {
     $('#author').find('option:first').attr('selected', 'selected');
