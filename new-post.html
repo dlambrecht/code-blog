@@ -10,22 +10,21 @@
     <link rel="stylesheet" href="css/layout.css">
     <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css">
-    <script src="js/highlight.pack.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
     <script src="js/handlebars-v4.0.5.js"></script>
     <script src="js/article.js"></script>
-    <script src="js/blog.js"></script>
-    <script src="js/blogArticles.js"></script>
+    <!-- <script src="js/blog.js"></script> -->
     <script src="js/new.js"></script>
 
     <script id="template" type="text/x-handlebars-template">
         <article class="article">
           <h1>{{title}}</h1>
-          <div class="category">Category: {{category}}</div>
-          <div>By:<a href="{{authorUrl}}" target="_blank">{{author}}</a>published {{daysOld}} days ago</div>
-          <div class="body">{{{markedBody}}}</div>
+          <section class="category">Category: {{category}}</section>
+          <address>By:<a href="{{authorUrl}}" target="_blank">{{author}}</a>published {{daysOld}} days ago</address>
+          <section class="body">{{{body}}}</section>
           <a href="#" class="read-on">Read On --></a>
         </article>
     </script>
@@ -52,6 +51,7 @@
         </label>
         <label>
           <textarea type="text" id="article-body" rows="8" cols="40" placeholder="Body"></textarea>
+          <!-- <pre><code>function() { alert('hi');}</pre></code> -->
         </label>
         <label>
           <input type="text" id="article-author" placeholder="Author">
@@ -71,5 +71,6 @@
         When finalized, copy the above JSON, and paste into blogArticle.js
       </label>
     </section>
+    <footer></footer>
   </body>
 </html>

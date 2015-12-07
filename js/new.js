@@ -4,17 +4,18 @@ function renderPreview(event) {
   var category = $('#article-category').val();
   var author = $('#article-author').val();
   var authorUrl = $('#article-author-url').val();
-  var body = $('#article-body').val();
-  $('#preview').append(marked(body));
+  var body = marked($('#article-body').val());
+
   var stored = {title: title, category: category, author: author, authorUrl: authorUrl, publishedOn: new Date(), body: body};
-  console.log(stored);
   var newArt = new Article(stored);
-  $('#preview').append(newArt.toHTML());
-  console.log(newArt);
+  $('#preview').html(newArt.toHTML());
   var storedArt = JSON.stringify(stored);
-  $('#article-json').append(storedArt);
+  $('#article-json').html(storedArt);
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
 };
 
 $(document).ready(function() {
-  $('#input-new-article').submit(renderPreview);
+  $('#input-new-article').on('submit', renderPreview);
 });

@@ -5,11 +5,6 @@ var Article = function(props) {
   this.authorUrl = props.authorUrl;
   this.category = props.category;
   this.body = props.body;
-  this.markedBody = marked(this.body);
-  if (this.category === "testing")
-  {
-    console.log(this.markedBody);
-  }
   this.publishedOn = props.publishedOn;
   this.calculateDaysOld();
 };
@@ -29,3 +24,7 @@ Article.prototype.calculateDaysOld = function() {
   var diffDays = Math.floor((currentDate.getTime() - publishedDate.getTime())/1000/60/60/24);
   this.daysOld = diffDays;
 };
+
+// once you've used AJAX to request your template from the server, you can go ahead and compile it and store the resulting function on the Article prototype
+// Article.prototype.template = Handlebars.compile(data);
+// .template() function available to all instances of Article
