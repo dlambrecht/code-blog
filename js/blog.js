@@ -87,8 +87,7 @@ blog.handleFilter = function() {
   });
 };
 
-// function calls when document is ready
-$(document).ready(function() {
+blog.onDataReady = function() {
   blog.sortRawData();
   blog.createArticles();
   blog.truncateArticles();
@@ -97,4 +96,27 @@ $(document).ready(function() {
   blog.handleFilter();
   blog.homeTab();
   blog.aboutTab();
+};
+
+blog.loadData = function() {
+  // TODO: check eTag and only call getJSON if eTag is different
+  if(true) {
+    // eTag is different, get new data from server
+    $.getJSON('/data/blogArticles.json', function(rawData) {
+      blog.rawData = rawData;
+      localStorage.setItem('blogArticles', JSON.stringify(rawData));
+      blog.onDataReady();
+    })
+    .fail(function() {
+      blog.rawData = [];
+    });
+  } else {
+    // eTag is the same, retrieve data from local storage
+    blog.rawData = JSON.parse(localStorage.getItem('blogArticles'));
+    blog.onDataReady();
+  }
+};
+
+$(document).ready(function() {
+  blog.loadData();
 });

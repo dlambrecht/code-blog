@@ -9,22 +9,14 @@
     <link rel="stylesheet" href="css/layout.css">
     <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css">
+<script      src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
     <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/handlebars-v4.0.5.js"></script>
     <script src="js/article.js"></script>
     <script src="js/blog.js"></script>
-    <script src="js/blogArticles.js"></script>
     <script src="js/util.js"></script>
 
-    <script id="template" type="text/x-handlebars-template">
-        <article class="article">
-          <h1>{{title}}</h1>
-          <div class="category">Category: {{category}}</div>
-          <div>By:<a href="{{authorUrl}}" target="_blank">{{author}}</a>published {{daysOld}} days ago</div>
-          <div class="body">{{{markedBody}}}</div>
-          <a href="#" class="read-on">Read On</a>
-        </article>
-    </script>
   </head>
 
   <body>
@@ -33,8 +25,8 @@
     </header>
       <nav>
           <a id="home" href="#tab1">Home</a> |
-          <a id="about" href="#tab2">About</a> |
-          <a id="gitHub" href="https://github.com/dlambrecht" target="_blank">GitHub</a>
+          <a id="about" href="#tab2">About</a>
+
       </nav>
 
       <section id="articles" class="tab-content active">
@@ -54,6 +46,7 @@
           <div>My story</div>
         </section>
     <footer>
+        <a id="gitHub" href="https://github.com/dlambrecht" target="_blank"></a>
     </footer>
   </body>
 </html>

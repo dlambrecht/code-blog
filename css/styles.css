@@ -61,3 +61,7 @@ article {
 .active {
   display: inline;
 }
+
+footer {
+  background-color: #407F7F;
+}
