@@ -22,16 +22,3 @@ Article.prototype.calculateDaysOld = function() {
   var diffDays = Math.floor((currentDate.getTime() - publishedDate.getTime())/1000/60/60/24);
   this.daysOld = diffDays;
 };
-
-// AJAX call to get template
-$.ajax ( {
-  url: '/template/article.html',
-  method: 'GET',
-  async: false
-})
-.done(function(res) {
-  Article.prototype.template = Handlebars.compile(res);
-})
-.fail(function(err) {
-  console.log(err);
-})
