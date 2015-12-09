@@ -29,10 +29,19 @@ $(function() {
   var distinct = compose(unique, pluck);
 
   // TODO do something useful with reduce and filter
-  
+
 
   // jquery render functions (IO)
   var $headline = $('<h1>Stats</h1>');
+
+  // function $wordCount(articles) {
+  //   var wordCount = distinct('body', articles).length;
+  //   wordCount.replace(/[^\w\s]/g, '').split(/\s+/).reduce(function(map, wordCount){
+  //     map[wordCount] = (map[wordCount]||0)+1;
+  //     return map;
+  //     return $('<p>Number of words: ' + wordCount + '</p>');
+  //   }, Object.create(null));
+  // }
 
   function $numberOfArticles(articles) {
     return $('<p>Number of articles: ' + articles.length + '</p>');
@@ -48,7 +57,8 @@ $(function() {
     component.append([
       $headline,
       $numberOfArticles(blog),
-      $numberOfAuthors(blog)
+      $numberOfAuthors(blog),
+      // $wordCount(blog)
     ]);
     return component;
   };
