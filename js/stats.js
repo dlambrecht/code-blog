@@ -30,15 +30,16 @@ var numAuthors = function() {
   $('#stats').append('<p>Number of Authors: ' + authorNum + '</p>');
 };
 
-var wordCount = function(str) {
-  return str.replace(/[#,\n]/g,'');
+var getWords = function(str) {
+  return str.replace(/[#,\n]/g,'').split(' ');
+};
+
+var getWordCount = function(article) {
+  return getWords(article.markdown).length;
 };
 
 var totalWords = function() {
-  var words = function(article) {
-    return wordCount(article.markdown).length;
-  };
-  var wordCounts = allArticles.map(words);
+  var wordCounts = allArticles.map(getWordCount);
   var blogWordCount = wordCounts.reduce(getSum, 0);
   $('#stats').append('<p>Number of words in all Articles: ' + blogWordCount + '</p>');
 };
@@ -60,18 +61,17 @@ var avgWordLength = function() {
 };
 
 var numAuthorWords = function() {
-  authorArray.forEach(function(element, i, array) {
-    var count = 0;
-    var getWords = function(article) {
-      if(article.author === element) {
-        count += wordCount(article.markdown).length;
-      }
-    };
-    allArticles.forEach(getWords);
-    authorWords.push(count);
+  var authorAvgWordCount = {};
+  allArticles.forEach(function(article) {
+    if(!authorAvgWordCount.hasOwnProperty(article.author)) {
+      authorAvgWordCount[article.author] = {wordCount:0, articleCount:0};
+    }
+    authorAvgWordCount[article.author].articleCount++;
+    authorAvgWordCount[article.author].wordCount += getWordCount(article);
   });
-  authorArray.forEach(function(element, i, array) {
-    $('#stats').append('<p>Average word length per Author: ' + element + '</p>');
+  
+  $.each(authorAvgWordCount, function(authorName, stats) {
+    $('#stats').append('<p>Average word count for ' + authorName + ': ' + Math.floor(stats.wordCount / stats.articleCount) + '</p>');
   });
 };
 
