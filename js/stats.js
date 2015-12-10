@@ -1,86 +1,86 @@
-
-$(function() {
-
-  function pluck(property, collection) {
-    return collection.map(function(e){
-      return e[property];
-    });
-  }
-
-  function unique(collection) {
-    var length = collection ? collection.length : 0;
-
-    if (!length) return [];
-
-    var seen = [];
-    collection.forEach(function(e) {
-      if ( seen.indexOf(e) < 0 ) seen.push(e);
-    });
-    return seen;
-  }
-
-  // compose two functions together
-  function compose(func1, func2) {
-    return function() {
-      return func1(func2.apply(null, arguments));
-    };
-  }
-
-  var distinct = compose(unique, pluck);
-
-  // TODO do something useful with reduce and filter
+var authorArray = [];
+var allWords = [];
+var authorWords = [];
 
 
-  // jquery render functions (IO)
-  var $headline = $('<h1>Stats</h1>');
+var getArticles = function(data) {
+  allArticles = data;
+};
 
-  // function $wordCount(articles) {
-  //   var wordCount = distinct('body', articles).length;
-  //   wordCount.replace(/[^\w\s]/g, '').split(/\s+/).reduce(function(map, wordCount){
-  //     map[wordCount] = (map[wordCount]||0)+1;
-  //     return map;
-  //     return $('<p>Number of words: ' + wordCount + '</p>');
-  //   }, Object.create(null));
-  // }
+var numArticles = function() {
+  var articleNum = allArticles.length;
+  $('#stats').append('<p>Number of Articles: ' + articleNum + '</p>');
+};
 
-  function $numberOfArticles(articles) {
-    return $('<p>Number of articles: ' + articles.length + '</p>');
-  }
+var searchAuthors = function() {
+  var getAuthor = function(article) {
+    if($.inArray(article.author, authorArray) === -1) {
+      authorArray.push(article.author);
+    }
+  };
+  allArticles.map(getAuthor);
+};
 
-  function $numberOfAuthors(articles) {
-    var numAuthors = distinct('author', articles).length;
-    return $('<p>Number of authors: ' + numAuthors + '</p>');
-  }
+var getSum = function(previousSum, wordCount, i, data) {
+  return previousSum + wordCount;
+};
 
-  var $statsComponent = function(blog) {
-    var component = $('<div>');
-    component.append([
-      $headline,
-      $numberOfArticles(blog),
-      $numberOfAuthors(blog),
-      // $wordCount(blog)
-    ]);
-    return component;
+var numAuthors = function() {
+  var authorNum = authorArray.length;
+  $('#stats').append('<p>Number of Authors: ' + authorNum + '</p>');
+};
+
+var wordCount = function(str) {
+  return str.replace(/[#,\n]/g,'');
+};
+
+var totalWords = function() {
+  var words = function(article) {
+    return wordCount(article.markdown).length;
+  };
+  var wordCounts = allArticles.map(words);
+  var blogWordCount = wordCounts.reduce(getSum, 0);
+  $('#stats').append('<p>Number of words in all Articles: ' + blogWordCount + '</p>');
+};
+
+var avgWordLength = function() {
+  var getWordLength = function(word) {
+    return word.length;
   };
 
-  function renderStats(blog) {
-    $('#stats').replaceWith($statsComponent(blog));
-  }
+  var getAvgLength = function(article) {
+    var words = article.markdown.split(' ');
+    var wordLengths = words.map(getWordLength);
+    return wordLengths.reduce(getSum, 0) / words.length;
+  };
 
-  function renderError(message, xhr) {
-    $('#stats').replaceWith($('<p>Error: <code>' + message + xhr + '</code></p>'));
-  }
+  var avgWordLengths = allArticles.map(getAvgLength);
+  var avg = Math.floor(avgWordLengths.reduce(getSum, 0) / allArticles.length);
+  $('#stats').append('<p>Average word length in all Articles: ' + avg + '</p>');
+};
 
-  // imperative shell
+var numAuthorWords = function() {
+  authorArray.forEach(function(element, i, array) {
+    var count = 0;
+    var getWords = function(article) {
+      if(article.author === element) {
+        count += wordCount(article.markdown).length;
+      }
+    };
+    allArticles.forEach(getWords);
+    authorWords.push(count);
+  });
+  authorArray.forEach(function(element, i, array) {
+    $('#stats').append('<p>Average word length per Author: ' + element + '</p>');
+  });
+};
 
-  function stats(data, message, xhr) {
-    if (xhr.status != 200) {
-      renderError(message, xhr);
-    } else {
-      renderStats(data);
-    }
-  }
-
-  $.getJSON('data/blogArticles.json', stats);
-
+$(function() {
+  $.get('data/blogArticles.json', getArticles)
+      .done(numArticles)
+      .done(searchAuthors)
+      .done(numAuthors)
+      .done(totalWords)
+      .done(avgWordLength)
+      .done(numAuthorWords);
 });

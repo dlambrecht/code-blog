@@ -4,8 +4,9 @@ var Article = function(props) {
   this.author = props.author;
   this.authorUrl = props.authorUrl;
   this.category = props.category;
-  this.body = props.body;
-  this.markedBody = marked(this.body);
+  this.markdown = props.markdown;
+  // this.body = props.body;
+  this.markedBody = marked(this.markdown);
   this.publishedOn = props.publishedOn;
   this.calculateDaysOld();
 };

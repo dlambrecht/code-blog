@@ -7,7 +7,7 @@ function renderPreview(event) {
   var authorUrl = $('#article-author-url').val();
   var body = $('#article-body').val();
 
-  var stored = {title: title, category: category, author: author, authorUrl: authorUrl, publishedOn: new Date(), body: body};
+  var stored = {title: title, category: category, author: author, authorUrl: authorUrl, publishedOn: new Date(), markdown: body};
 
   var newArt = new Article(stored);
   $('#preview').html(newArt.toHTML());

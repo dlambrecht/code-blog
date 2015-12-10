@@ -103,7 +103,7 @@ blog.onDataReady = function() {
 // ajax call to retrieve article data from server
 function ajaxArticles() {
   return $.ajax ( {
-    url: '/data/blogArticles.json',
+    url: 'data/blogArticles.json',
     method: 'GET',
     ifModified: false
   });

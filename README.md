@@ -10,3 +10,5 @@ Style Palette
 Day 2 Lab:
   got help from Miranda on how to populate the filter fields
   used JavaScript and jQuery book for guidance on the tabbed nav
+
+For Day 7 assignment, refactored after going over the code in class.
