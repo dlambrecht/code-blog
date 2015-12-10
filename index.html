@@ -11,9 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css">
 <script      src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
-    <script src="js/jquery-2.1.4.min.js"></script>
-    <script src="js/handlebars-v4.0.5.js"></script>
-    <script src="js/html5sql.js"></script>
+    <script src="vendor/jquery-2.1.4.min.js"></script>
+    <script src="vendor/handlebars-v4.0.5.js"></script>
+    <script src="vendor/html5sql.js"></script>
     <script src="js/webdb.js"></script>
     <script src="js/article.js"></script>
     <script src="js/blog.js"></script>
@@ -23,7 +23,17 @@
 
   <body>
     <header>
-      <h1 id="blog-title">Darcy's Blog</h1>
+      <section id="byline">
+
+        <h1>Darcy Lambrecht</h1>
+        <p>Software Developer</p>
+        <div id="social">
+          <a id="gitHub" href="https://github.com/dlambrecht" target="_blank"></a>
+          <a id="facebook" href="https://www.facebook.com/darcy.lambrecht" target="_blank"></a>
+          <a id="twitter" href="https://twitter.com/DarcyLambrecht" target="_blank"></a>
+        </div>
+
+      </section>
     </header>
       <nav>
           <a id="home" href="#tab1">Home</a> |
@@ -45,12 +55,13 @@
         </section>
 
         <section id="aboutContent" class="tab-content">
-          <div>My story</div>
+          <div>
+            <p>Espresso and et, trifecta wings, and lungo, seasonal, dark eu medium, eu a mug americano half and half frappuccino single shot. Cinnamon ristretto saucer barista, caramelization, mug, extraction affogato, crema et caramelization, instant, irish whipped steamed grinder aromatic filter eu filter. Café au lait instant, cortado extra, rich instant milk caramelization, extra acerbic dripper brewed single origin body. Barista, bar frappuccino froth pumpkin spice, instant acerbic aftertaste doppio, americano seasonal java decaffeinated mug black est arabica trifecta. Viennese single origin wings, cup aftertaste in, qui steamed, con panna, acerbic roast mazagran crema half and half cortado so to go. Lungo whipped cappuccino, milk barista et, acerbic beans, steamed ristretto, steamed and macchiato so grinder est foam.</p>
+          </div>
         </section>
     <footer>
-        <a id="gitHub" href="https://github.com/dlambrecht" target="_blank"></a>
-        <a id="facebook" href="https://www.facebook.com/darcy.lambrecht" target="_blank"></a>
-        <a id="twitter" href="https://twitter.com/DarcyLambrecht" target="_blank"></a>
+      Copyright  &copy; 2015 Darcy Lambrecht
+
     </footer>
   </body>
 </html>

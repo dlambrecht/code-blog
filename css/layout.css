@@ -5,6 +5,9 @@ img {
   margin: 10px;
 }
 
+#social {
+  float: right;
+}
 /*article:last-child {
   display: none;
 }*/
@@ -30,4 +33,13 @@ img {
 @viewport {
   width: device-width;
   zoom: 1;
+}
+
+#new-post {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+}
+textarea {
+  width: 95%;
 }

@@ -22,6 +22,9 @@ blog.createArticles = function() {
     blog.blogArticles.push(art);
     art.insertRecord();
     $('#blog').prepend(art.toHTML());
+    $('pre code').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
   };
 };
 
@@ -88,6 +91,18 @@ blog.handleFilter = function() {
     $('#blog').find('article').hide();
     $('.article:contains(' + $(this).val() + ')').show();
   });
+};
+
+blog.handleAdd = function() {
+
+};
+
+blog.handleUpdate = function() {
+
+};
+
+blog.handleDelete = function() {
+
 };
 
 // method to call other methods after the data is retrieved from the server
