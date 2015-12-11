@@ -141,3 +141,5 @@ $.when(ajaxTemplate(), ajaxArticles()).done(function(template, rawData) {
   blog.rawData = rawData[0];
   blog.onDataReady();
 });
+
+webDB.init();

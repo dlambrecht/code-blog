@@ -29,6 +29,7 @@ Article.prototype.insertRecord = function(callback) {
   // insert article record into database
   webDB.execute(
     'INSERT INTO articles \
+     (title, category, author, authorUrl, publishedOn, markdown) \
      VALUES ("' + this.title + '", "' + this.category + '", "' + this.author + '", "' + this.authorUrl + '", "' + this.publishedOn + '", "' + this.markdown + '") \
      ;',
     callback
