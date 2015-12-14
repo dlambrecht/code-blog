@@ -94,15 +94,25 @@ blog.handleFilter = function() {
 };
 
 blog.handleAdd = function() {
-
+  $('#add-article-btn').on('click', function(e) {
+    var article = blog.createArticles();
+    article.insertRecord();
+  });
 };
 
 blog.handleUpdate = function() {
-
+  $('#update-article-btn').on('click', function() {
+    var id = $(this).data('article-id');
+    var article = blog.createArticles();
+    article.id = id;
+  });
 };
 
 blog.handleDelete = function() {
-
+  $('#delete-article-btn').con('click', function() {
+    var id = $(this).data('article-id');
+    art.deleteRecord();
+  });
 };
 
 // method to call other methods after the data is retrieved from the server
