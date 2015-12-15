@@ -38,24 +38,6 @@ blog.truncateArticles = function() {
   });
 };
 
-// home tab
-blog.homeTab = function() {
-  $('#home').on('click', function(event) {
-    event.preventDefault();
-    $('#articles').addClass('active');
-    $('#aboutContent').removeClass('active');
-  });
-};
-
-// about tab
-blog.aboutTab = function() {
-  $('#about').on('click', function(event) {
-    event.preventDefault();
-    $('#aboutContent').addClass('active');
-    $('#articles').removeClass('active');
-  });
-};
-
 // author filter
 blog.authorPopulate = function() {
   for(var i = 0; i < blog.blogArticles.length; i++) {
@@ -109,7 +91,7 @@ blog.handleUpdate = function() {
 };
 
 blog.handleDelete = function() {
-  $('#delete-article-btn').con('click', function() {
+  $('#delete-article-btn').on('click', function() {
     var id = $(this).data('article-id');
     art.deleteRecord();
   });
@@ -123,18 +105,7 @@ blog.onDataReady = function() {
   blog.authorPopulate();
   blog.categoryPopulate();
   blog.handleFilter();
-  blog.homeTab();
-  blog.aboutTab();
 };
-
-// ajax call to retrieve article data from server
-function ajaxArticles() {
-  return $.ajax ( {
-    url: 'data/blogArticles.json',
-    method: 'GET',
-    ifModified: false
-  });
-}
 
 // ajax call to get the template from template file
 function ajaxTemplate() {
@@ -144,7 +115,7 @@ function ajaxTemplate() {
   });
 }
 
-$.when(ajaxTemplate(), ajaxArticles()).done(function(template, rawData) {
+$.when(ajaxTemplate()).done(function(template, rawData) {
   Article.prototype.template = Handlebars.compile(template[0]);
   console.log(rawData);
 
