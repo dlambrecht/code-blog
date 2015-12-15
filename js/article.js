@@ -63,6 +63,51 @@ Article.prototype.deleteRecord = function(callback) {
   );
 };
 
+Article.all = [];
+
+Article.requestAll = function(next, callback) {
+  $.getJSON('/data/blogArticles.json', function(articles) {
+    articles.forEach(function(articleData) {
+      var article = new Article(articleData);
+      article.insertRecord();
+      Article.all.push(article);
+    });
+    next(callback);
+  });
+};
+
+Article.loadAll = function(callback) {
+  var callback = callback || function() {};
+
+  if (Article.all.length === 0) {
+    webDB.execute('SELECT * FROM articles ORDER BY publishedOn;', function(rows) {
+      if (rows.length === 0) {
+        Article.requestAll(Article.loadAll, callback);
+      } else {
+        rows.forEach(function(row) {
+          Article.all.push(new Article(row));
+        });
+        callback();
+      }
+    }
+   );
+  } else {
+    callback();
+  }
+};
+
+Article.find = function(id, callback) {
+  webDB.execute(
+    [
+      {
+        'sql': 'SELECT * FROM articles WHERE id = ?',
+        'data': [id]
+      }
+    ],
+    callback
+  );
+};
+
 Article.truncateTable = function(callback) {
   // delete all records from given truncateTable
   webDB.execute(
