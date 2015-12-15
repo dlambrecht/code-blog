@@ -23,8 +23,36 @@ nav {
   padding-left: 25px;
 }
 
+#new {
+  background-image: url(0006-pencil.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-left: 25px;
+}
+
+#stats {
+  background-image: url(0156-stats-dots.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-left: 25px;
+}
+
 #gitHub {
   background-image: url(0434-github.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-left: 25px;
+}
+
+#facebook {
+  background-image: url(0398-facebook2.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  padding-left: 25px;
+}
+
+#twitter {
+  background-image: url(0402-twitter.svg);
   background-repeat: no-repeat;
   background-size: contain;
   padding-left: 25px;

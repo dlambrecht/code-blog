@@ -72,7 +72,8 @@ blog.categoryPopulate = function() {
   // });
   }
 };
-//method to handle filter
+
+// method to handle filter
 blog.handleFilter = function() {
   $('select[id="category"]').change(function() {
     $('#author').find('option:first').attr('selected', 'selected');
@@ -87,6 +88,7 @@ blog.handleFilter = function() {
   });
 };
 
+// method to call other methods after the data is retrieved from the server
 blog.onDataReady = function() {
   blog.sortRawData();
   blog.createArticles();
@@ -98,25 +100,27 @@ blog.onDataReady = function() {
   blog.aboutTab();
 };
 
-blog.loadData = function() {
-  // TODO: check eTag and only call getJSON if eTag is different
-  if(true) {
-    // eTag is different, get new data from server
-    $.getJSON('/data/blogArticles.json', function(rawData) {
-      blog.rawData = rawData;
-      localStorage.setItem('blogArticles', JSON.stringify(rawData));
-      blog.onDataReady();
-    })
-    .fail(function() {
-      blog.rawData = [];
-    });
-  } else {
-    // eTag is the same, retrieve data from local storage
-    blog.rawData = JSON.parse(localStorage.getItem('blogArticles'));
-    blog.onDataReady();
-  }
-};
+// ajax call to retrieve article data from server
+function ajaxArticles() {
+  return $.ajax ( {
+    url: '/data/blogArticles.json',
+    method: 'GET',
+    ifModified: false
+  });
+}
 
-$(document).ready(function() {
-  blog.loadData();
+// ajax call to get the template from template file
+function ajaxTemplate() {
+  return $.ajax ( {
+    url: '/template/article.html',
+    method: 'GET'
+  });
+}
+
+$.when(ajaxTemplate(), ajaxArticles()).done(function(template, rawData) {
+  Article.prototype.template = Handlebars.compile(template[0]);
+  console.log(rawData);
+
+  blog.rawData = rawData[0];
+  blog.onDataReady();
 });
