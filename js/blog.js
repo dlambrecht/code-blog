@@ -22,6 +22,9 @@ blog.createArticles = function() {
     blog.blogArticles.push(art);
     art.insertRecord();
     $('#blog').prepend(art.toHTML());
+    $('pre code').each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
   };
 };
 
@@ -90,6 +93,18 @@ blog.handleFilter = function() {
   });
 };
 
+blog.handleAdd = function() {
+
+};
+
+blog.handleUpdate = function() {
+
+};
+
+blog.handleDelete = function() {
+
+};
+
 // method to call other methods after the data is retrieved from the server
 blog.onDataReady = function() {
   blog.sortRawData();
@@ -126,3 +141,5 @@ $.when(ajaxTemplate(), ajaxArticles()).done(function(template, rawData) {
   blog.rawData = rawData[0];
   blog.onDataReady();
 });
+
+webDB.init();

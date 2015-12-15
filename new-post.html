@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="js/jquery-2.1.4.min.js"></script>
+    <script src="vendor/jquery-2.1.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
-    <script src="js/handlebars-v4.0.5.js"></script>
+    <script src="vendor/handlebars-v4.0.5.js"></script>
     <script src="js/article.js"></script>
     <script src="js/blog.js"></script>
     <script src="js/new.js"></script>
@@ -22,13 +22,20 @@
   </head>
   <body>
     <header>
-      <h1 id="blog-title">Darcy's Blog</h1>
-      <p id="create-new">Create New Post </p>
+      <section id="byline">
+        <h1>Darcy Lambrecht</h1>
+        <p>Software Developer</p>
+        <div id="social">
+          <a id="gitHub" href="https://github.com/dlambrecht" target="_blank"></a>
+          <a id="facebook" href="https://www.facebook.com/darcy.lambrecht" target="_blank"></a>
+          <a id="twitter" href="https://twitter.com/DarcyLambrecht" target="_blank"></a>
+        </div>
+      </section>
     </header>
 
     <nav>
         <a id="stats-link" href="stats.html">Stats</a> |
-        <a id="about" href="#tab2">About</a>
+        <a id="home" href="index.html">Blog</a>
     </nav>
 
     <section id="new-post">
@@ -51,19 +58,22 @@
         <input type="submit">
       </form>
     </section>
+
     <section id="preview">
 
     </section>
     <section id="artice-export">
+      <button id="add-article-btn" class="pull-left">Add to Database</button>
+      <button id="update-article-btn" class="pull-left" style="display:none;">Update Article</button>
+      <button id="delete-article-btn" class="pull-left" style="display:none;">Delete Article</button>
       <label id="export-field" for="article-json" class="pull-right">
         <div type="text" readonly id="article-json"></div>
         When finalized, copy the above JSON, and paste into blogArticle.js
       </label>
     </section>
     <footer>
-        <a id="gitHub" href="https://github.com/dlambrecht" target="_blank"></a>
-        <a id="facebook" href="https://www.facebook.com/darcy.lambrecht" target="_blank"></a>
-        <a id="twitter" href="https://twitter.com/DarcyLambrecht" target="_blank"></a>
+    Copyright  &copy; 2015 Darcy Lambrecht
+
     </footer>
   </body>
 </html>

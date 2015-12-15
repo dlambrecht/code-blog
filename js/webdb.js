@@ -39,7 +39,7 @@ webDB.setupTables = function () {
   html5sql.process(
     'CREATE TABLE articles \
      ( \
-       PRIMARY KEY id, \
+       id int PRIMARY KEY, \
        title text, \
        category text, \
        author text, \
