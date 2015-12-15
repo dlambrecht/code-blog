@@ -30,7 +30,7 @@ nav {
   padding-left: 25px;
 }
 
-#stats {
+#stats-link {
   background-image: url(0156-stats-dots.svg);
   background-repeat: no-repeat;
   background-size: contain;

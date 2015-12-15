@@ -16,9 +16,11 @@ blog.sortRawData = function() {
 
 // create articles
 blog.createArticles = function() {
+  Article.truncateTable();
   for (var i = 0; i < blog.rawData.length; i++) {
     var art = new Article(blog.rawData[i]);
     blog.blogArticles.push(art);
+    art.insertRecord();
     $('#blog').prepend(art.toHTML());
   };
 };
@@ -103,7 +105,7 @@ blog.onDataReady = function() {
 // ajax call to retrieve article data from server
 function ajaxArticles() {
   return $.ajax ( {
-    url: '/data/blogArticles.json',
+    url: 'data/blogArticles.json',
     method: 'GET',
     ifModified: false
   });
