@@ -20,5 +20,8 @@ articleView.index = function() {
 };
 
 articleView.render = function(article) {
+  $('#articles').show();
+  $('#aboutContent').hide();
+  // article.daysAgo = parseInt((new Date() - new Date(article.publishedOn))/60/60/24/1000);
   return articleView.template(article);
 };
