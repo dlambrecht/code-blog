@@ -63,3 +63,4 @@ webDB.execute = function (sql, callback) {
     }
   );
 };
+webDB.init();

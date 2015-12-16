@@ -1,8 +1,7 @@
 page('/', articleController.index);
 
-page('/about', function() {
-  $('#aboutContent').show();
-  $('#articles').hide();
-});
+page('/about', reposController.index);
+  // $('#aboutContent').show();
+  // $('#articles').hide();
 
 page.start();
