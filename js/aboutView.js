@@ -10,16 +10,11 @@ aboutView.index = function() {
 };
 
 aboutView.render = function(repo) {
-  return $('<a>').text(repo.name);
+  return $('<li>').text(repo.name);
 };
 
 aboutView.ui = function() {
-  $('#aboutContent').show();
+  $('#aboutContent').empty();
   $('#articles').hide();
-
-  // var $about = $('#aboutContent');
-  // var $ul = $about.find('ul');
-  //
-  // $ul.empty();
-  // $about.fadeIn().siblings().hide();
+  $('#aboutContent').show();
 };
