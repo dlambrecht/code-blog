@@ -81,24 +81,17 @@ blog.handleFilter = function() {
 // };
 
 // ajax call to get the template from template file
-function ajaxTemplate() {
-  return $.ajax ( {
-    url: '/template/article.html',
-    method: 'GET'
-  });
-}
-
-$.when(ajaxTemplate()).done(function(template, rawData) {
-  Article.prototype.template = Handlebars.compile(template[0]);
-  console.log(rawData);
-
-  blog.rawData = rawData[0];
-  // blog.onDataReady();
-});
-
-blog.sortRawData();
-blog.createArticles();
-blog.truncateArticles();
-blog.authorPopulate();
-blog.categoryPopulate();
-blog.handleFilter();
+// function ajaxTemplate() {
+//   return $.ajax ( {
+//     url: '/template/article.html',
+//     method: 'GET'
+//   });
+// }
+//
+// $.when(ajaxTemplate()).done(function(template, rawData) {
+//   Article.prototype.template = Handlebars.compile(template[0]);
+//   console.log(rawData);
+//
+//   blog.rawData = rawData[0];
+//   // blog.onDataReady();
+// });

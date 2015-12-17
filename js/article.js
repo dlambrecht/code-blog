@@ -12,11 +12,6 @@ var Article = function(props) {
   this.calculateDaysOld();
 };
 
-// create HTML from template
-Article.prototype.toHTML = function() {
-  return this.template(this);
-};
-
 // date method
 Article.prototype.calculateDaysOld = function() {
   var currentDate = new Date();
@@ -102,6 +97,31 @@ Article.find = function(id, callback) {
       {
         'sql': 'SELECT * FROM articles WHERE id = ?',
         'data': [id]
+      }
+    ],
+    callback
+  );
+};
+
+Article.findByCategory = function(category, callback) {
+  webDB.execute(
+    [
+      {
+        'sql': 'SELECT * FROM articles WHERE category = ?',
+        'data': [category]
+      }
+    ],
+    callback
+  );
+
+};
+
+Article.findByAuthor = function(author, callback) {
+  webDB.execute(
+    [
+      {
+        'sql': 'SELECT * FROM articles WHERE author = ?',
+        'data': [author]
       }
     ],
     callback

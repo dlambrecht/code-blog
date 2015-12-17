@@ -1,7 +1,9 @@
 var aboutView = {};
 
 aboutView.index = function() {
-  aboutView.ui();
+  $('#aboutContent').empty();
+  $('#articles').hide();
+  $('#aboutContent').show();
 
   var _append = function(repo) {
     $('#aboutContent').append(aboutView.render(repo));
@@ -14,7 +16,5 @@ aboutView.render = function(repo) {
 };
 
 aboutView.ui = function() {
-  $('#aboutContent').empty();
-  $('#articles').hide();
-  $('#aboutContent').show();
+
 };
