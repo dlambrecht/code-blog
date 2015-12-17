@@ -12,3 +12,5 @@ Day 2 Lab:
   used JavaScript and jQuery book for guidance on the tabbed nav
 
 For Day 7 assignment, refactored after going over the code in class.
+
+http://darcy-blog.herokuapp.com/
