@@ -1,27 +1,85 @@
 var articleView = {};
 
-articleView.index = function() {
-  var renderAll = function() {
-    $articles = $('#blog');
-    $articles.show().siblings().hide();
-    Article.all.forEach(function(article) {
-      $articles.append(articleView.render(article));
-    });
-  };
+articleView.loadTemplate = function(articles) {
+  $.get('/template/article.html', function(data, msg, xhr) {
+    articleView.template = Handlebars.compile(data);
+    articleView.authorPopulate();
+    articleView.categoryPopulate();
+    articleView.handleFilter();
+    articleView.renderGroup(articles);
+    articleView.truncateArticles();
+  });
+};
 
-  if (articleView.template) {
-    renderAll();
-  } else {
-    $.get('/template/article.html', function(data, msg, xhr) {
-      articleView.template = Handlebars.compile(data);
-      renderAll();
-    });
-  }
+articleView.renderGroup = function(articleList) {
+  $('#blog')
+    .fadeIn()
+    .append(
+      articleList.map(function(a) {
+        return articleView.render(a);
+      })
+    )
+    .siblings().hide();
+};
+
+articleView.index = function() {
+  articleView.loadTemplate(Article.all);
 };
 
 articleView.render = function(article) {
   $('#articles').show();
   $('#aboutContent').hide();
-  // article.daysAgo = parseInt((new Date() - new Date(article.publishedOn))/60/60/24/1000);
   return articleView.template(article);
+};
+
+articleView.show = function(rawArticles) {
+  console.log(Article.all);
+  var articles = [];
+  rawArticles.forEach(function(rawArticle) {
+    articles.push(new Article(rawArticle));
+  });
+  articleView.loadTemplate(articles);
+};
+
+
+// read on functionality
+articleView.truncateArticles = function() {
+  $('article p:not(:first-child)').hide();
+  $('.read-on').on('click', function(event) {
+    event.preventDefault();
+    $(this).parent().find('p').fadeIn();
+    $(this).hide();
+  });
+};
+
+// author filter
+articleView.authorPopulate = function() {
+  _.uniq(Article.all, function(article) {
+    return article.author;
+  }).map(function(article) {
+    var $popAuthor = $('#author-filter').clone();
+    $popAuthor.removeAttr('id').text(article.author);
+    $('#author').append($popAuthor);
+  });
+};
+
+// category filter
+articleView.categoryPopulate = function() {
+  _.uniq(Article.all, function(article) {
+    return article.category;
+  }).map(function(article) {
+    var $popCategory = $('#category-filter').clone();
+    $popCategory.removeAttr('id').text(article.category);
+    $('#category').append($popCategory);
+  });
+};
+
+articleView.handleFilter = function() {
+  $('select[id="category"]').change(function() {
+    window.location = '/category/' + $(this).val();
+  });
+
+  $('select[id="author"]').change(function() {
+    window.location = '/author/' + $(this).val();
+  });
 };

@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/layout.css">
     <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
-
   </head>
 
   <body>
@@ -33,7 +32,7 @@
           <a href="/about">About</a>
       </nav>
 
-      <section id="articles" class="tab-content active">
+      <section id="filters" class="tab-content active">
           <div>
             <select id="author">
               <option id="author-filter">filter by author</option>
@@ -42,9 +41,12 @@
             <select id="category">
               <option id="category-filter">filter by category</option>
             </select>
-
-            <div id="blog"></div>
           </div>
+
+        </section>
+
+        <section id="articles">
+          <div id="blog"></div>
         </section>
 
         <section id="aboutContent" class="tab-content">
@@ -58,15 +60,14 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js"></script>
 
-<script      src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
- <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script      src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <script src="https://cdn.rawgit.com/visionmedia/page.js/master/page.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.js"></script>
     <script src="/vendor/jquery-2.1.4.min.js"></script>
     <script src="/vendor/handlebars-v4.0.5.js"></script>
     <script src="/vendor/html5sql.js"></script>
 
     <script src="/js/webdb.js"></script>
-    <!-- <script src="/js/githubToken.js"></script> -->
-    <!-- <script src="/js/blog.js"></script> -->
     <script src="/js/article.js"></script>
     <script src="/js/repo.js"></script>
 
@@ -78,8 +79,5 @@
     <script src="/js/reposController.js"></script>
 
     <script src="/js/router.js"></script>
-
-
-
   </body>
 </html>

@@ -2,9 +2,6 @@
   <h1>{{title}}</h1>
   <section class="category">Category: {{category}}</section>
   <address>By <a href="{{authorUrl}}">{{author}}</a>published {{daysOld}} days ago</address>
-  {{#if_admin}}
-    <a href="editor/articles.html?id={{id}}&amp;admin=true" class="edit-btn">Edit</a>
-  {{/if_admin}}
   <section class="body">{{{markedBody}}}</section>
   <a href="#" class="read-on">Read On</a>
 </article>

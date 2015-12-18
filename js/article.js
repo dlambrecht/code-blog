@@ -6,15 +6,9 @@ var Article = function(props) {
   this.authorUrl = props.authorUrl;
   this.category = props.category;
   this.markdown = props.markdown;
-  // this.body = props.body;
   this.markedBody = marked(this.markdown);
   this.publishedOn = props.publishedOn;
   this.calculateDaysOld();
-};
-
-// create HTML from template
-Article.prototype.toHTML = function() {
-  return this.template(this);
 };
 
 // date method
@@ -28,10 +22,12 @@ Article.prototype.calculateDaysOld = function() {
 Article.prototype.insertRecord = function(callback) {
   // insert article record into database
   webDB.execute(
-    'INSERT INTO articles \
-     (title, category, author, authorUrl, publishedOn, markdown) \
-     VALUES ("' + this.title + '", "' + this.category + '", "' + this.author + '", "' + this.authorUrl + '", "' + this.publishedOn + '", "' + this.markdown + '") \
-     ;',
+    [
+      {
+        sql: 'INSERT INTO articles (title, category, author, authorUrl, publishedOn, markdown) VALUES (?, ?, ?, ?, ?, ?)',
+        data: [this.title, this.category, this.author, this.authorUrl, this.publishedOn, this.markdown]
+      }
+    ],
     callback
   );
 };
@@ -65,24 +61,26 @@ Article.prototype.deleteRecord = function(callback) {
 
 Article.all = [];
 
-Article.requestAll = function(next, callback) {
+Article.populateDatabaseFromJson = function(next, callback) {
   $.getJSON('/data/blogArticles.json', function(articles) {
     articles.forEach(function(articleData) {
       var article = new Article(articleData);
       article.insertRecord();
-      Article.all.push(article);
     });
     next(callback);
   });
 };
 
+// post-conditions:
+//   - Article.all will be an array populated with all Article instances
+//   - The database will be populated
 Article.loadAll = function(callback) {
   var callback = callback || function() {};
 
   if (Article.all.length === 0) {
     webDB.execute('SELECT * FROM articles ORDER BY publishedOn;', function(rows) {
       if (rows.length === 0) {
-        Article.requestAll(Article.loadAll, callback);
+        Article.populateDatabaseFromJson(Article.loadAll, callback);
       } else {
         rows.forEach(function(row) {
           Article.all.push(new Article(row));
@@ -100,8 +98,33 @@ Article.find = function(id, callback) {
   webDB.execute(
     [
       {
-        'sql': 'SELECT * FROM articles WHERE id = ?',
-        'data': [id]
+        sql: 'SELECT * FROM articles WHERE id = ?',
+        data: [id]
+      }
+    ],
+    callback
+  );
+};
+
+Article.findByCategory = function(category, callback) {
+  webDB.execute(
+    [
+      {
+        sql: 'SELECT * FROM articles WHERE category = ?',
+        data: [category]
+      }
+    ],
+    callback
+  );
+
+};
+
+Article.findByAuthor = function(author, callback) {
+  webDB.execute(
+    [
+      {
+        sql: 'SELECT * FROM articles WHERE author = ?',
+        data: [author]
       }
     ],
     callback
