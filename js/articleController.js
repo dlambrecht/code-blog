@@ -6,8 +6,8 @@ articleController.index = function(ctx, next) {
 
 articleController.category = function(ctx, next) {
   Article.loadAll(function() {
-    var categoryData = function(data) {
-      ctx.articles = data;
+    var categoryData = function(articles) {
+      ctx.articles = articles;
       next();
     };
     Article.findByCategory(ctx.params.category, categoryData);
@@ -24,6 +24,6 @@ articleController.author = function(ctx, next) {
   });
 };
 
-articleController.show = function(ctx, next) {
+articleController.show = function(ctx) {
   articleView.show(ctx.articles);
 };
