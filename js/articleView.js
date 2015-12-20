@@ -14,7 +14,7 @@ articleView.loadTemplate = function(articles) {
 articleView.renderGroup = function(articleList) {
   $('#blog')
     .hide()
-    .fadeIn(3000)
+    .fadeIn()
     .empty()
     .append(
       articleList.map(function(a) {
@@ -73,13 +73,15 @@ articleView.categoryPopulate = function() {
 };
 
 articleView.handleFilter = function() {
-  $('#category').on('change', function() {
+  $('#category').on('change', function(e) {
     page('/category/' + $(this).val());
-    // e.preventDefault();
+    e.preventDefault();
 
   });
 
-  $('select[id="author"]').change(function() {
+  $('#author').on('change', function(e) {
     page('/author/' + $(this).val());
+    e.preventDefault();
+
   });
 };
