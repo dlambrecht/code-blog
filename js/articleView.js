@@ -13,12 +13,15 @@ articleView.loadTemplate = function(articles) {
 
 articleView.renderGroup = function(articleList) {
   $('#blog')
-    .fadeIn()
+    .hide()
+    .fadeIn(3000)
+    .empty()
     .append(
       articleList.map(function(a) {
         return articleView.render(a);
       })
     )
+
     .siblings().hide();
 };
 
@@ -32,12 +35,7 @@ articleView.render = function(article) {
   return articleView.template(article);
 };
 
-articleView.show = function(rawArticles) {
-  console.log(Article.all);
-  var articles = [];
-  rawArticles.forEach(function(rawArticle) {
-    articles.push(new Article(rawArticle));
-  });
+articleView.show = function(articles) {
   articleView.loadTemplate(articles);
 };
 
@@ -75,11 +73,13 @@ articleView.categoryPopulate = function() {
 };
 
 articleView.handleFilter = function() {
-  $('select[id="category"]').change(function() {
-    window.location = '/category/' + $(this).val();
+  $('#category').on('change', function() {
+    page('/category/' + $(this).val());
+    // e.preventDefault();
+
   });
 
   $('select[id="author"]').change(function() {
-    window.location = '/author/' + $(this).val();
+    page('/author/' + $(this).val());
   });
 };

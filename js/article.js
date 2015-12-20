@@ -114,7 +114,12 @@ Article.findByCategory = function(category, callback) {
         data: [category]
       }
     ],
-    callback
+    function(rows) {
+      var articles = rows.map(function(row) {
+        return new Article(row);
+      });
+      callback(articles);
+    }
   );
 
 };
